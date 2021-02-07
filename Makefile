@@ -6,7 +6,7 @@ BINARY_NAME = ${APP_NAME}_${ARCH}_amd64${EXT}
 
 .PHONY: build
 build:
-	#rice embed-go --> enable this once the client app is ready
+	rice embed-go
 	$(GO) build -a -o ./dist/${BINARY_NAME} -tags netgo -ldflags '-s -w'
 	rice clean
 

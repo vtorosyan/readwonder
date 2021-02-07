@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"strings"
 
+	rice "github.com/GeertJohan/go.rice"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 )
@@ -21,11 +22,18 @@ func Start() {
 	port := viper.GetString("port")
 
 	r := mux.NewRouter()
+	// Register client app files
+	box := rice.MustFindBox("app/build")
+	app := http.StripPrefix("/app/", http.FileServer(box.HTTPBox()))
+	r.Handle("/app/", app)
+
+	// Register server api
 	api := r.PathPrefix("/api").Subrouter()
 
 	b := strings.Builder{}
 	b.WriteString("Please consult the following endpoints:\n\n")
 
+	// Register all routes
 	for p, h := range allRoutes() {
 		b.WriteString(p + "\n")
 		api.HandleFunc(p, h)
