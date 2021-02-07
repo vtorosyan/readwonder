@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func main() {
+func Start() {
 	viper.SetEnvPrefix("readwonder") // defaults to uppercase
 	err := viper.BindEnv("port") // defaults to uppercase
 	if err != nil {
