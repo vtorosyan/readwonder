@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/vtorosyan/readwonder/pkg/books"
 	"net/http"
+
+	"github.com/vtorosyan/readwonder/pkg/books"
 )
 
 type HandleFunc func(w http.ResponseWriter, r *http.Request)

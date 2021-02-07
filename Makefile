@@ -9,4 +9,4 @@ build:
 	$(GO) build -o ./dist/${BINARY_NAME} -tags netgo -ldflags '-w' ./pkg
 
 run-local: build
-	./dist/${BINARY_NAME}
+	READWONDER_PORT=9000 ./dist/${BINARY_NAME}
