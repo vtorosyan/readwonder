@@ -1,0 +1,25 @@
+version: "3.2"
+
+services:
+
+  api:
+    image: vtorosyan/readwonder-api:1.0
+    environment:
+      - READWONDER_PORT: 9000
+    ports:
+      - target: 9000
+        published: 9000
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: readwonder
+      MYSQL_USER: readwonder
+      MYSQL_PASSWORD: password
+    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --innodb_monitor_enable=all]
+    ports:
+      - target: 3306
+        published: 5306
+        protocol: tcp
+        mode: host
